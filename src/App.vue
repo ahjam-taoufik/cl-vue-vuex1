@@ -1,6 +1,6 @@
 <template>
   <base-container title="Vuex">
-     
+      <h2>{{$store.state.counter}} </h2>
   </base-container>
 </template>
 
