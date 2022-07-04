@@ -2,24 +2,47 @@ import { createApp } from 'vue';
 import { createStore } from 'vuex';
 import App from './App.vue';
 
+const AuthModule = {
+  state() {
+    return {
+      isAuth: false,
+    };
+  },
+  mutations: {
+    login(state) {
+      state.isAuth = true;
+    },
+    logout(state) {
+      state.isAuth = false;
+    },
+  },
+  getters: {
+    isAuthenticated(state) {
+      return state.isAuth;
+    },
+  },
+  actions: {
+    login(context) {
+      context.commit('login');
+    },
+    logout(context) {
+      context.commit('logout');
+    },
+  },
+};
+
 const store = createStore({
+  modules: {
+    AuthModule,
+  },
   state() {
     return {
       counter: 0,
       maxValue: 50,
       minValue: 0,
-      isAuth:false
     };
   },
   mutations: {
-       login(state){
-           state.isAuth=true
-       },
-       logout(state){
-           state.isAuth=false
-       },
- 
-    // ************************************
     increment(state) {
       state.counter++;
     },
@@ -35,10 +58,6 @@ const store = createStore({
     },
   },
   getters: {
-    isAuthenticated(state){
-      return state.isAuth
-     }, 
-    // **************************************
     getCounter(state) {
       return state.counter;
     },
@@ -51,26 +70,19 @@ const store = createStore({
       return getters.getCounter;
     },
   },
-  actions:{
-     login(context){
-        context.commit('login')
-     },
-     logout(context){
-        context.commit('logout')
-     },
+  actions: {
     //*******************************
-    increment(ctxt){  
-      //you can Run Async in Action 
-      setTimeout(function(){
-        ctxt.commit('increment') //increment :  mutation
-      },2000)
-       
+    increment(ctxt) {
+      //you can Run Async in Action
+      setTimeout(function () {
+        ctxt.commit('increment'); //increment :  mutation
+      }, 2000);
     },
-    incrementByNumber(ctxt,payload){
+    incrementByNumber(ctxt, payload) {
       console.log(payload);
-        ctxt.commit('incrementNmb',payload.value)  
-    }
-  }
+      ctxt.commit('incrementNmb', payload.value);
+    },
+  },
 });
 
 const app = createApp(App);
