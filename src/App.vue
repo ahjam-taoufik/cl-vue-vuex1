@@ -1,6 +1,7 @@
 <template>
   <base-container title="Vuex">
     <base-counter></base-counter>
+    <button @click="inc">increase by mapAction +</button>
     <button @click="increase">increase +</button>
     <button @click="decrease">decrease -</button>
     <button @click="incrementByAction">increment By Action +</button>
@@ -16,6 +17,7 @@
 import BaseContainer from './components/BaseContainer.vue';
 import BaseCounter from './components/BaseCounter.vue';
 import BaseButton from './components/BaseButton.vue';
+import {mapActions}from 'vuex'
 export default {
   components: {
     BaseContainer,
@@ -23,6 +25,10 @@ export default {
     BaseButton,
   },
   methods: {
+     
+    //  ...mapActions(['increment']),
+     ...mapActions({ inc:'increment'}),
+
     increase() {
       this.$store.commit('increment');
     },
