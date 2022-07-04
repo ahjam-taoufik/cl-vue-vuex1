@@ -7,6 +7,16 @@ const store= createStore({
         return{
           counter: 0
         }
+    },
+    mutations:{
+      increment(state){
+        state.counter++
+      },
+
+      incrementNmb(state,nmb=1){
+        state.counter += nmb
+      }
+
     }
 })
 
