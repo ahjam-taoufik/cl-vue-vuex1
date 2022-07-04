@@ -8,9 +8,18 @@ const store = createStore({
       counter: 0,
       maxValue: 50,
       minValue: 0,
+      isAuth:false
     };
   },
   mutations: {
+       login(state){
+           state.isAuth=true
+       },
+       logout(state){
+           state.isAuth=false
+       },
+ 
+    // ************************************
     increment(state) {
       state.counter++;
     },
@@ -26,6 +35,10 @@ const store = createStore({
     },
   },
   getters: {
+    isAuthenticated(state){
+      return state.isAuth
+     }, 
+    // **************************************
     getCounter(state) {
       return state.counter;
     },
@@ -39,8 +52,14 @@ const store = createStore({
     },
   },
   actions:{
-    increment(ctxt){
-       
+     login(context){
+        context.commit('login')
+     },
+     logout(context){
+        context.commit('logout')
+     },
+    //*******************************
+    increment(ctxt){  
       //you can Run Async in Action 
       setTimeout(function(){
         ctxt.commit('increment') //increment :  mutation

@@ -1,5 +1,9 @@
 <template>
-  <base-container title="Vuex">
+  <base-container >
+     <base-auth-user></base-auth-user>
+  </base-container>
+  
+  <base-container title="Vuex" v-if="isAuth">
     <base-counter></base-counter>
     <button @click="inc">increase by mapAction +</button>
     <button @click="increase">increase +</button>
@@ -11,18 +15,26 @@
     <base-button :mode="'increment'">add +</base-button>
     <base-button :mode="'decrement'">Min -</base-button>
   </base-container>
+
 </template>
 
 <script>
 import BaseContainer from './components/BaseContainer.vue';
 import BaseCounter from './components/BaseCounter.vue';
 import BaseButton from './components/BaseButton.vue';
+import BaseAuthUser from './components/BaseAuthUser.vue'
 import {mapActions}from 'vuex'
 export default {
   components: {
     BaseContainer,
     BaseCounter,
     BaseButton,
+    BaseAuthUser
+  },
+  computed:{
+      isAuth(){
+      return this.$store.getters.isAuthenticated
+    }
   },
   methods: {
      
