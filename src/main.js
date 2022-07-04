@@ -38,6 +38,20 @@ const store = createStore({
       return getters.getCounter;
     },
   },
+  actions:{
+    increment(ctxt){
+       
+      //you can Run Async in Action 
+      setTimeout(function(){
+        ctxt.commit('increment') //increment :  mutation
+      },2000)
+       
+    },
+    incrementByNumber(ctxt,payload){
+      console.log(payload);
+        ctxt.commit('incrementNmb',payload.value)  
+    }
+  }
 });
 
 const app = createApp(App);

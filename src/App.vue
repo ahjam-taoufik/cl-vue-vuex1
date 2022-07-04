@@ -1,8 +1,12 @@
 <template>
   <base-container title="Vuex">
     <base-counter></base-counter>
-    <button   @click="increase">increase +</button>
-    <button  @click="decrease">decrease -</button>
+    <button @click="increase">increase +</button>
+    <button @click="decrease">decrease -</button>
+    <button @click="incrementByAction">increment By Action +</button>
+    <button @click="incrementNumberByAction">
+      increment Number By Action +
+    </button>
     <base-button :mode="'increment'">add +</base-button>
     <base-button :mode="'decrement'">Min -</base-button>
   </base-container>
@@ -16,19 +20,30 @@ export default {
   components: {
     BaseContainer,
     BaseCounter,
-    BaseButton
+    BaseButton,
   },
-  methods:{
-    increase(){
-      this.$store.commit('increment')
+  methods: {
+    increase() {
+      this.$store.commit('increment');
     },
-    decrease(){
-      this.$store.commit('decrease')
+    decrease() {
+      this.$store.commit('decrease');
     },
-  }
+    incrementByAction() {
+      this.$store.dispatch('increment');
+    },
+    incrementNumberByAction() {
+      // this.$store.dispatch('incrementByNumber',4)
+      this.$store.dispatch('incrementByNumber',{value:4})
+      // this.$store.dispatch({
+      //   type: 'incrementByNumber',
+      //   val: 5,
+      // });
+    },
+  },
 };
 </script>
- 
+
 <style>
 * {
   box-sizing: border-box;
