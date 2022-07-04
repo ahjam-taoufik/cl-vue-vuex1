@@ -1,9 +1,10 @@
 <template>
   <base-container title="Vuex">
     <base-counter></base-counter>
-    <button @click="increase">increase +</button>
-    <button @click="decrease">decrease -</button>
-    <base-button></base-button>
+    <button   @click="increase">increase +</button>
+    <button  @click="decrease">decrease -</button>
+    <base-button :mode="'increment'">add +</base-button>
+    <base-button :mode="'decrement'">Min -</base-button>
   </base-container>
 </template>
 

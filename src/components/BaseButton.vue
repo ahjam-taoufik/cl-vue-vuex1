@@ -1,17 +1,21 @@
 <template>
-
-    <button @click="increment">add 3</button>
-
+  <button @click="action">
+    <slot />
+  </button>
 </template>
 
 <script>
 export default {
-   methods:{
-    increment(){
-        this.$store.commit('incrementNmb',3)
-    }
-   }
-
+  props: ['mode'],
+  methods: {
+    action() {
+      if (this.mode === 'increment') {
+        this.$store.commit('incrementNmb');
+      } else if (this.mode === 'decrement') {
+        this.$store.commit('decrementNmb');
+      }
+    },
+  },
 };
 </script>
 

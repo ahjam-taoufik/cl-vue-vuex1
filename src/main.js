@@ -21,6 +21,9 @@ const store = createStore({
     incrementNmb(state, nmb = 1) {
       state.counter += nmb;
     },
+    decrementNmb(state, nmb = 1) {
+      state.counter -= nmb;
+    },
   },
   getters: {
     getCounter(state) {
